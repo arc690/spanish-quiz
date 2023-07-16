@@ -134,6 +134,25 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        .teaching-container {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .teaching-text {
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .teaching-content-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .next-button {
+            margin-top: 16px;
+        }
     </style>
 </head>
 
@@ -141,7 +160,7 @@
     <div class="intro-section">
         <img src="your-logo.png" alt="Logo" class="logo">
     </div>
-    <Script>
+    <script>
         // Function to hide the intro section after a certain duration
         function hideIntroSection() {
             const introSection = document.querySelector('.intro-section');
@@ -150,8 +169,7 @@
 
         // Hide the intro section after 5 seconds (5000 milliseconds)
         setTimeout(hideIntroSection, 5000);
-
-    </Script>
+    </script>
     <div class="container">
         <h1>Cuestionario de Idioma Español</h1>
         <div class="question">
@@ -165,6 +183,7 @@
             <button onclick="checkAnswer('d')">Confundido</button>
         </div>
         <p id="scoreText" class="score"></p>
+        <button id="nextButton" class="next-button" onclick="nextTeachingSection()" style="display: none;">Siguiente</button>
     </div>
 
     <div class="character"></div>
@@ -185,41 +204,238 @@
                         },
                         answer: "a"
                     },
-                    // Add more questions for level 1
+                    {
+                        teaching: true,
+                        lesson: "¡Excelente! Ahora que hemos aprendido algunas palabras y números básicos, sigamos con las preguntas del cuestionario. ¡Vamos a practicar más!",
+                        teachingContent: []
+                    },
+                    {
+                        question: "¿Cuál es el número después de 9?",
+                        emoji: "&#x1F522;",
+                        options: {
+                            a: "10",
+                            b: "8",
+                            c: "11",
+                            d: "7"
+                        },
+                        answer: "a"
+                    }
                 ]
             },
             {
                 level: 2,
                 questions: [
                     {
-                        question: "¿Cuál es el antónimo de la palabra 'rápido'?",
-                        emoji: "&#x1F4A8;",
+                        question: "¿Cuál es el antónimo de la palabra 'grande'?",
+                        emoji: "&#x1F680;",
                         options: {
-                            a: "Lento",
-                            b: "Pequeño",
-                            c: "Fácil",
-                            d: "Cerrado"
+                            a: "Pequeño",
+                            b: "Alto",
+                            c: "Delgado",
+                            d: "Largo"
                         },
                         answer: "a"
                     },
-                    // Add more questions for level 2
+                    {
+                        question: "¿Cómo se dice 'adiós' en inglés?",
+                        emoji: "&#x1F44B;",
+                        options: {
+                            a: "Bye",
+                            b: "See you",
+                            c: "Goodbye",
+                            d: "Farewell"
+                        },
+                        answer: "c"
+                    },
+                    {
+                        teaching: true,
+                        lesson: "¡Vamos a aprender más palabras en español! Repite después de mí:",
+                        teachingContent: [
+                            "Casa - House",
+                            "Perro - Dog",
+                            "Gato - Cat",
+                            "Libro - Book",
+                            "Amigo - Friend",
+                            "Comida - Food",
+                            "Agua - Water",
+                            "Escuela - School",
+                            "Canción - Song",
+                            "Familia - Family"
+                        ]
+                    },
+                    {
+                        question: "El color 'verde' se traduce al inglés como:",
+                        emoji: "&#x1F49A;",
+                        options: {
+                            a: "Red",
+                            b: "Blue",
+                            c: "Green",
+                            d: "Yellow"
+                        },
+                        answer: "c"
+                    },
+                    {
+                        teaching: true,
+                        lesson: "¡Estás haciendo un gran progreso! Sigamos aprendiendo más palabras en español. Repite después de mí:",
+                        teachingContent: [
+                            "Hola, ¿cómo estás? - Hello, how are you?",
+                            "Me llamo [nombre] - My name is [name]",
+                            "¿Qué hora es? - What time is it?",
+                            "Me gusta - I like",
+                            "No me gusta - I don't like",
+                            "¿Dónde está? - Where is it?",
+                            "Por favor, habla despacio - Please speak slowly",
+                            "¿Puedes ayudarme? - Can you help me?",
+                            "Lo siento - I'm sorry",
+                            "¡Gracias por tu ayuda! - Thank you for your help!"
+                        ]
+                    },
+                    {
+                        question: "¿Cuál es la capital de México?",
+                        emoji: "&#x1F30E;",
+                        options: {
+                            a: "Ciudad de México",
+                            b: "Monterrey",
+                            c: "Guadalajara",
+                            d: "Puebla"
+                        },
+                        answer: "a"
+                    },
+                    {
+                        teaching: true,
+                        lesson: "¡Sigue así! Sigamos aprendiendo español. Repite después de mí:",
+                        teachingContent: [
+                            "Lunes - Monday",
+                            "Martes - Tuesday",
+                            "Miércoles - Wednesday",
+                            "Jueves - Thursday",
+                            "Viernes - Friday",
+                            "Sábado - Saturday",
+                            "Domingo - Sunday",
+                            "Mes - Month",
+                            "Año - Year",
+                            "Hoy - Today"
+                        ]
+                    },
+                    {
+                        question: "¿Cuál es el número antes de 5?",
+                        emoji: "&#x1F522;",
+                        options: {
+                            a: "4",
+                            b: "6",
+                            c: "3",
+                            d: "2"
+                        },
+                        answer: "a"
+                    }
                 ]
             },
             {
                 level: 3,
                 questions: [
                     {
-                        question: "¿Cuál es el sinónimo de la palabra 'amable'?",
-                        emoji: "&#x1F607;",
+                        question: "¿Cuál es el sinónimo de la palabra 'cansado'?",
+                        emoji: "&#x1F62B;",
                         options: {
-                            a: "Cruel",
-                            b: "Generoso",
-                            c: "Peligroso",
-                            d: "Valiente"
+                            a: "Feliz",
+                            b: "Energético",
+                            c: "Triste",
+                            d: "Aburrido"
+                        },
+                        answer: "d"
+                    },
+                    {
+                        question: "¿Cómo se dice 'gracias' en inglés?",
+                        emoji: "&#x1F44B;",
+                        options: {
+                            a: "Thank you",
+                            b: "Welcome",
+                            c: "Please",
+                            d: "Sorry"
+                        },
+                        answer: "a"
+                    },
+                    {
+                        teaching: true,
+                        lesson: "¡Sigamos aprendiendo más palabras en español! Repite después de mí:",
+                        teachingContent: [
+                            "Tiempo - Time",
+                            "Trabajo - Work",
+                            "Fiesta - Party",
+                            "Playa - Beach",
+                            "Montaña - Mountain",
+                            "Ciudad - City",
+                            "Autobús - Bus",
+                            "Avión - Airplane",
+                            "Tren - Train",
+                            "Coche - Car"
+                        ]
+                    },
+                    {
+                        question: "El color 'azul' se traduce al inglés como:",
+                        emoji: "&#x1F499;",
+                        options: {
+                            a: "Red",
+                            b: "Blue",
+                            c: "Green",
+                            d: "Yellow"
                         },
                         answer: "b"
                     },
-                    // Add more questions for level 3
+                    {
+                        teaching: true,
+                        lesson: "¡Sigue así! Vamos a aprender más frases útiles en español. Repite después de mí:",
+                        teachingContent: [
+                            "¿Dónde está el baño? - Where is the bathroom?",
+                            "¿Cuánto cuesta? - How much does it cost?",
+                            "Me gustaría un café, por favor - I would like a coffee, please",
+                            "¿Puedo pagar con tarjeta? - Can I pay with a card?",
+                            "No entiendo - I don't understand",
+                            "¿Puedes repetir, por favor? - Can you repeat, please?",
+                            "¿Qué recomiendas? - What do you recommend?",
+                            "¿Dónde puedo comer comida típica? - Where can I eat typical food?",
+                            "¿Qué hora es el vuelo? - What time is the flight?",
+                            "¡Hasta luego! - See you later!"
+                        ]
+                    },
+                    {
+                        question: "¿Cuál es la capital de Argentina?",
+                        emoji: "&#x1F30F;",
+                        options: {
+                            a: "Buenos Aires",
+                            b: "Córdoba",
+                            c: "Rosario",
+                            d: "Mendoza"
+                        },
+                        answer: "a"
+                    },
+                    {
+                        teaching: true,
+                        lesson: "¡Felicidades por llegar al último nivel! Sigamos aprendiendo más palabras en español. Repite después de mí:",
+                        teachingContent: [
+                            "Feliz cumpleaños - Happy birthday",
+                            "Amor - Love",
+                            "Alegría - Joy",
+                            "Sueño - Dream",
+                            "Aprender - To learn",
+                            "Viajar - To travel",
+                            "Escuchar - To listen",
+                            "Bailar - To dance",
+                            "Comer - To eat",
+                            "Beber - To drink"
+                        ]
+                    },
+                    {
+                        question: "¿Cuál es el número después de 15?",
+                        emoji: "&#x1F522;",
+                        options: {
+                            a: "16",
+                            b: "14",
+                            c: "17",
+                            d: "13"
+                        },
+                        answer: "a"
+                    }
                 ]
             }
         ];
@@ -247,14 +463,47 @@
                 button.setAttribute("onclick", `checkAnswer('${option}')`);
                 optionsContainer.appendChild(button);
             }
+
+            if (currentQuestion.teaching) {
+                const teachingContainer = document.createElement("div");
+                teachingContainer.classList.add("teaching-container");
+
+                const teachingText = document.createElement("p");
+                teachingText.classList.add("teaching-text");
+                teachingText.textContent = currentQuestion.lesson;
+                teachingContainer.appendChild(teachingText);
+
+                if (currentQuestion.teachingContent && currentQuestion.teachingContent.length > 0) {
+                    const teachingContentList = document.createElement("ul");
+                    teachingContentList.classList.add("teaching-content-list");
+
+                    for (const content of currentQuestion.teachingContent) {
+                        const contentItem = document.createElement("li");
+                        contentItem.textContent = content;
+                        teachingContentList.appendChild(contentItem);
+                    }
+
+                    teachingContainer.appendChild(teachingContentList);
+                }
+
+                optionsContainer.appendChild(teachingContainer);
+
+                const nextButton = document.getElementById("nextButton");
+                nextButton.style.display = "block";
+            } else {
+                const nextButton = document.getElementById("nextButton");
+                nextButton.style.display = "none";
+            }
         }
 
         function checkAnswer(selectedOption) {
             const currentLevel = levels[currentLevelIndex];
             const currentQuestion = currentLevel.questions[currentQuestionIndex];
 
-            if (selectedOption === currentQuestion.answer) {
-                score++;
+            if (!currentQuestion.teaching) {
+                if (selectedOption === currentQuestion.answer) {
+                    score++;
+                }
             }
 
             if (currentQuestionIndex < currentLevel.questions.length - 1) {
@@ -274,6 +523,11 @@
                     showScore();
                 }
             }
+        }
+
+        function nextTeachingSection() {
+            currentQuestionIndex++;
+            displayQuestion();
         }
 
         function showScore() {
